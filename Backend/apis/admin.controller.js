@@ -2,7 +2,7 @@ const {addcommission} = require("./admin.services");
 
 module.exports ={
 
-    createCommission: (req,res) =>{
+    createCommission: async(req,res) =>{
         const body = req.body;
         addcommission(body,(err,results) =>{
 

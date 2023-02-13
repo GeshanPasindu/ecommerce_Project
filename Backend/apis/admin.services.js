@@ -2,7 +2,7 @@ const database = require("../databse")
 
 module.exports ={
 
-    addcommission: (data,callback) =>{
+    addcommission: async(data,callback) =>{
         database.query(
             `INSERT IN TO commission (Category,Commission)
             values(?,?)`,
