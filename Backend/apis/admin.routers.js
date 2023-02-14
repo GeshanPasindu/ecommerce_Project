@@ -1,7 +1,12 @@
 const router = require('express').Router();
-const{createCommission} = require("./admin.controller");
+const{createCommission,
+      updateCommission,
+     getCommission} = require("./admin.controller");
  
 
-router.post("/addCommission",createCommission);
+router.post("/Addcommission",createCommission);
+router.patch("/Updatecommission",updateCommission);
+router.get("/Getcommission",getCommission);
+
 
 module.exports = router;
