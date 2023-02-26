@@ -4,7 +4,7 @@ module.exports ={
 
     addcommission: async(data,callback) =>{
         database.query(
-            `INSERT INTO commission (Category,Commission)
+            `INSERT INTO commission (User_Category,Commission)
             values(?,?)`,
             [
                 data.Category,
@@ -42,7 +42,7 @@ module.exports ={
 
     changeCommission: (data,callback) =>{
         database.query(
-            `UPDATE commission SET commission = ? WHERE category = ?`,
+            `UPDATE commission SET commission = ? WHERE User_category = ?`,
             [
                 data.Commission,
                 data.Category
