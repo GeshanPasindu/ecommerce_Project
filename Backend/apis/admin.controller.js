@@ -6,7 +6,7 @@ module.exports ={
 
     createCommission: async(req,res) =>{
         const body = req.body;
-        console.log(req.body)
+        // console.log(req.body)
         addcommission(body,(err,results) =>{
 
             if(err){
