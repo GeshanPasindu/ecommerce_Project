@@ -1,13 +1,34 @@
-const {addcommission,
+const {addCategory,
       changeCommission,
-      viewCommission} = require("./admin.services");
+      viewCommission,
+      addCommission} = require("./admin.services");
 
 module.exports ={
+
+    createCategory: async(req,res) =>{
+        const body = req.body;
+        // console.log(req.body)
+        addCategory(body,(err,results) =>{
+
+            if(err){
+                console.log(err);
+                return res.json({
+                    success:0,
+                    message: err
+                });
+            }
+            return res.json({
+                success: 1,
+                message: results
+            })
+        })
+
+    },
 
     createCommission: async(req,res) =>{
         const body = req.body;
         // console.log(req.body)
-        addcommission(body,(err,results) =>{
+        addCommission(body,(err,results) =>{
 
             if(err){
                 console.log(err);

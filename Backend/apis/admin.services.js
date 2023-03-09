@@ -1,13 +1,28 @@
 const database = require("../databse")
 
 module.exports ={
-    addcommission: async(data,callback) =>{
+    addCategory: async(data,callback) =>{
         database.query(
-            `INSERT INTO commission (category,percentage)
+            `INSERT INTO user_category (category_name)
+            values(?)`,
+            [
+                data.category_name,
+            ],
+            (err,results,fields) =>{
+                if(err){
+                    return callback(err)
+                }
+                return callback(null,results);
+            }
+        )
+    },
+    addCommission: async(data,callback) =>{
+        database.query(
+            `INSERT INTO commission (commission_rate,category_id)
             values(?,?)`,
             [
-                data.category,
-                data.percentage
+                data.commission_rate,
+                data.category_id
             ],
             (err,results,fields) =>{
                 if(err){
@@ -19,8 +34,9 @@ module.exports ={
     },
     viewCommission: async(callback) =>{
         database.query(
-            `SELECT * FROM commission `,
-            [],
+            `SELECT * 
+            FROM commission AS c RIGHT JOIN user_category AS u  ON c.category_id = u.category_id `,
+            
             (err,results,fields) =>{
                 if(err){
                     return callback(err)
@@ -31,10 +47,11 @@ module.exports ={
     },
     changeCommission: (data,callback) =>{
         database.query(
-            `UPDATE commission SET percentage = ? WHERE category = ?`,
+            `UPDATE commission SET commission_rate = ? WHERE  commission_id=?`,
             [
-                data.percentage,
-                data.category
+                data.commision_rate,
+                data.commission_id,
+                
             ],
             (err,results,fields) =>{
                 if(err){

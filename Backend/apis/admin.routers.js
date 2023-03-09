@@ -1,9 +1,11 @@
 const router = require('express').Router();
-const{createCommission,
+const{createCategory,
       updateCommission,
-     getCommission} = require("./admin.controller");
+      getCommission,
+      createCommission
+                     } = require("./admin.controller");
  
-
+router.post("/Addcategory",createCategory);
 router.post("/Addcommission",createCommission);
 router.patch("/Updatecommission",updateCommission);
 router.get("/Getcommission",getCommission);
